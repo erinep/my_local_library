@@ -1,6 +1,6 @@
 // Return the first search result from Openlibrary.org
 // parameter: searchStr, depth - how many items to search for meta data
-// Return Metadata Object with author_name, title, summary, and tags
+// Return Metadata Object with hasText, authors, covers_all, cover_default, title, summary, and tags
 
 
 const fs = require('fs');
@@ -36,8 +36,12 @@ async function fetchBookMeta (searchStr, depth) {
                 bookMeta.authors = book.author_name;
                 bookMeta.title = bookKeyFetch.title;
                 bookMeta.covers_all = bookKeyFetch.covers;
-                bookMeta.covers_default = `https://covers.openlibrary.org/b/id/${bookKeyFetch.covers[0]}-M.jpg`;
                 bookMeta.summary = bookKeyFetch.description.value.replace(/[\r\n"]+/g, '');
+
+                // set default cover
+                if (bookKeyFetch.covers){
+                    bookMeta.covers_default = `https://covers.openlibrary.org/b/id/${bookKeyFetch.covers[0]}-M.jpg`;
+                }
 
                 // clean tags
                 bookMeta.tags = bookKeyFetch?.subjects?.map(tag => `'${tag.replace(/["']/g, '')}'`)
