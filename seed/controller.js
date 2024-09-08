@@ -57,6 +57,9 @@ module.exports = new class {
             // OPEN FILE FOR WRITING
             fs.writeFileSync(file_metadata_dest, "module.exports = [\n");
 
+            const debug_file = "./DEBUG.data"
+            fs.writeFileSync(debug_file, "")
+
             // write books in range to file_metadata_dest file
             for (let i = start ; i < start + inc ; ++i){
 
@@ -64,14 +67,28 @@ module.exports = new class {
 
                 // BUILD SEARCH STRING. Remove numbers, quotation marks, keywords
                 let str = myBooks[i].file_name +"+"+ myBooks[i].author;
-                str = str.replace(/[\d"' ]+/g, "+");
-                str = str.replace(/(.mp4|.aac|book)/g, "");
+                str = str.replace(/(.mp4|.m4b|.aac|book|Book)/g, "");
+                str = str.replace(/[\d" ]+/g, "+");
+                str = str.replace(/\[(.*?)\]/g, ""); // remove character between [square brackets]
+                str = str.replace(/\((.*?)\)/g, ""); // remove character between (round brackets)
+
 
                 
                 let meta = await fetchBookMeta(str, 10)
                 if (!meta.hasText){
-                    process.stdout.write(`author: ${myBooks[i].author}, book: ${myBooks[i].file_name}, q: ${str} .... `)
-                    console.log (meta.hasText)
+                    // let link = `https://openlibrary.org/search.json?q=${str}&fields=title,key`;
+                    // console.log (link)
+                    // fs.appendFileSync(debug_file, `${link}\n`)
+
+                    // fetch(link).then( (res) => res.json())
+                    // .then( data => {
+                    //     for (let doc of data.docs){
+                    //         let sub_link = `https://openlibrary.org/${doc.key}.json`;
+                    //         fs.appendFileSync(debug_file, `    ${sub_link}\n`)
+                    //     }
+                    // })
+                        
+                    process.stdout.write(`author: ${myBooks[i].author}, book: ${myBooks[i].file_name}, q: ${str} .... ${meta.hasText}\n`)
                 }
 
                 write_BookMeta(file_metadata_dest, myBooks[i], meta)

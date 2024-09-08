@@ -1,7 +1,7 @@
 function main(){
 
     index = 1;
-    size = 50;
+    size = 18;
     pagenation(index, size);
 
 
@@ -20,9 +20,7 @@ function main(){
             index = index - size;
             pagenation(index, size);
         }
-
     })
-    
 }
 
 
@@ -51,9 +49,11 @@ function appendBookCard(book){
 
     var titleEl = document.createElement("h2");
     titleEl.innerText = book.title;
+    titleEl.className = "title"
 
     var coverEl = document.createElement("img");
     coverEl.src = book.covers_default;
+    coverEl.className = "cover"
 
     var content = document.createElement("div");
     content.className = "content"
@@ -69,21 +69,32 @@ function appendBookCard(book){
 
     var descEl = document.createElement("p");
     descEl.innerText = book.summary;
+    descEl.className = "about"
 
     var pathEl = document.createElement("a")
     pathEl.href = "file:" + book.path 
-    pathEl.innerHTML = "LINK"
+    pathEl.innerText = "LINK"
+
+    var showMoreEl = document.createElement("button");
+    showMoreEl.className = "showMore"
+    showMoreEl.innerText = "Show More"
 
     var container = document.createElement('div');
     container.className = 'container';
     container.appendChild(titleEl);
 
+    var metaEl = document.createElement("div");
+    metaEl.className = "meta"
+
     content.appendChild(coverEl);
+    metaEl.appendChild(file_nameEl);
+    metaEl.appendChild(authorEl);
+    metaEl.appendChild(pathEl); 
+
+    text.appendChild(metaEl);
     text.appendChild(descEl);
-    text.appendChild(file_nameEl);
-    text.appendChild(authorEl);
-    text.appendChild(pathEl); 
-    content.appendChild(text)
+    text.appendChild(showMoreEl);
+    content.appendChild(text);
 
     container.appendChild(content)
     document.querySelector("article").appendChild(container)

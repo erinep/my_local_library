@@ -5,58 +5,146 @@
     box-sizing: border-box;
 }
 
+
+:root {
+    --primary-color: #003366; /* Dark blue for a professional look */
+    --background-color: #f4f4f4; /* Light gray for a clean, neutral background */
+    --text-color: #333333; /* Dark gray for easy readability */
+    --header-bg-color: #004080; /* Slightly lighter dark blue for the header */
+    --header-text-color: #ffffff; /* White text for strong contrast */
+    --button-bg-color: #007bff; /* Bright blue for buttons, conveys trust and clarity */
+    --button-bg-hover: #0056b3; /* Darker blue for button hover for a sleek effect */
+    --button-text-color: #ffffff; /* White text for buttons to ensure readability */
+    --link-color: #1014f1; /* Matches the primary color for consistency */
+    --link-hover-color: #120872; /* Even darker blue for link hover */
+    
+}
+
 /* Basic styling */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: lightgrey;
+    background-color: var(--background-color);
+    color: var(--text-color);
     margin: 20px;
+}
+
+
+button {
+    margin-top: 10px;
+    height: 50px;
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: none;
+    padding: 0 50px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bolder;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover{
+    background-color: var(--button-bg-hover);
+    transform: scale(1.05); /* Slightly enlarge button on hover */
 }
 
 /* Links */
 a {
-    color: #007bff;
+    font-weight: bolder;
+    color: var(--link-color);
     text-decoration: none;
 }
 
 a:hover {
+    color: var(--link-hover-color);
     text-decoration: underline;
 }
 
-/* Container */
-.container {
-    width: 85%;
-    max-width: 1200px;
-    margin: 20px auto;
+
+
+/* HEADER */
+
+header {
+    position: fixed;
+    width: 100%;
+    background-color: var(--header-bg-color);
+    z-index: 1000;
+    top: 0;
+    left: 0;    
     padding: 20px;
-    background-color: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1{
+    margin-bottom: 1rem;
+    margin: 0 auto;
+    text-align: center;
+    color: var(--header-text-color);
+}
+
+
+
+.pages {
+    width: 100%;
+    /* border: 2px solid red; */
+    margin: 0 auto;
+    display:flex;
+    justify-content: space-between;
+    color: var(--header-text-color);
+}
+
+
+/* BOOK CARD STYLES*/
+
+article {
+    margin-top: 130px;
+    padding: 20px;
     border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap; /* Allow multiple containers per row */
+    gap: 20px; /* Space between containers */
+}
+
+.cover {
+    width: 200px;
+    height: 300px;
+    border-radius: 8px;
+    margin: auto;
+}
+
+.container {
+    box-shadow: 0 0 10px var(--header-bg-color);
+    flex: 0 0 calc((100% / 3) - 20px); /* Three containers per row, adjust as needed */
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
 }
 
 .content {
     display: flex;
 }
 
+.meta {
+    overflow: hidden
+}
 
 .text {
-    padding-left : 20px;
+    padding-left: 20px;
+    position: relative;
+    overflow: hidden;
 }
 
-
-.pages {
-    width: 85%;
-    max-width: 1200px;
-    /* border: 2px solid red; */
-    margin: 0 auto;
-    display:flex;
-    justify-content: space-between;
+.about {
+    height: 100px;
+    overflow: hidden;
 }
 
-/* Headings */
-h1, h2, h3, h4, h5, h6 {
+.title {
     margin-bottom: 1rem;
-    margin: 0 auto;
-    text-align: center;
 }
+
+

@@ -48,6 +48,25 @@ async function fetchBookMeta (searchStr, depth) {
                 break;
             }
 
+            // DOUBLE CHECK DESCRIPTION DATA
+            if (typeof bookKeyFetch.description === 'string'){
+                bookMeta.hasText = true;
+                bookMeta.authors = book.author_name;
+                bookMeta.title = bookKeyFetch.title;
+                bookMeta.covers_all = bookKeyFetch.covers;
+                bookMeta.summary = bookKeyFetch.description.replace(/[\r\n"]+/g, '');
+
+                // set default cover
+                if (bookKeyFetch.covers){
+                    bookMeta.covers_default = `https://covers.openlibrary.org/b/id/${bookKeyFetch.covers[0]}-M.jpg`;
+                }
+
+                // clean tags
+                bookMeta.tags = bookKeyFetch?.subjects?.map(tag => `'${tag.replace(/["']/g, '')}'`)
+                break;
+            }
+
+
             // LOAD INITAL META DATA ON FIRST LOOP
             if ( i === 0){
                 bookMeta.authors = book.author_name;
