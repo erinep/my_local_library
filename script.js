@@ -21,6 +21,7 @@ function main(){
             pagenation(index, size);
         }
     })
+
 }
 
 
@@ -75,9 +76,11 @@ function appendBookCard(book){
     pathEl.href = "file:" + book.path 
     pathEl.innerText = "LINK"
 
-    var showMoreEl = document.createElement("button");
-    showMoreEl.className = "showMore"
-    showMoreEl.innerText = "Show More"
+    var showMoreEl = document.createElement("a");
+    showMoreEl.addEventListener("click", () => {
+        openInfo(book);
+    })
+    showMoreEl.innerText = "Read More..."
 
     var container = document.createElement('div');
     container.className = 'container';
@@ -100,6 +103,37 @@ function appendBookCard(book){
     document.querySelector("article").appendChild(container)
 }
 
+
+
+function openInfo(book){
+    let infoDiv = document.createElement("div");
+    infoDiv.id = "info";
+
+    let exit = document.createElement("a");
+    exit.style.position =  "fixed";
+    exit.style.right = "4%";
+    exit.style.top = "2%";
+    exit.style.fontSize = "3em";
+
+    exit.innerText = "x"
+    exit.addEventListener("click", () => {
+        document.querySelector("#info").remove();
+    })
+
+    title = document.createElement("h1");
+    title.innerText = book.title;
+    title.id = "infoTitle"
+
+    fullSummary = document.createElement("p");
+    fullSummary.innerText = book.summary
+    fullSummary.id = "fullSummary"
+
+    infoDiv.appendChild(exit);
+    infoDiv.appendChild(title);
+    infoDiv.appendChild(fullSummary);
+
+    document.querySelector("body").appendChild(infoDiv);
+}
 
 // JavaScript to dynamically create and mount a .container
 document.addEventListener('DOMContentLoaded', main)
