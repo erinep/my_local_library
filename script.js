@@ -28,6 +28,7 @@ function main(){
             index = index + size;
             pagenation(index, size, viewType);
         }
+        window.scrollTo(0, 0)
     })
 
 
@@ -38,6 +39,7 @@ function main(){
             index = index - size;
             pagenation(index, size, viewType);
         }
+        window.scrollTo(0, 0)
     })
 
     // 2c. pagenation on ArrowLeft and ArrowRight
@@ -48,12 +50,14 @@ function main(){
                 index = index + size;
                 pagenation(index, size, viewType);
             }
+            window.scrollTo(0, 0)
         }
         else if (e.key === "ArrowLeft"){
             if (index - size > 0) {
                 index = index - size;
                 pagenation(index, size, viewType);
             }
+            window.scrollTo(0, 0)
         }
     })
 
