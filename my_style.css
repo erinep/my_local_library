@@ -7,17 +7,17 @@
 
 
 :root {
-    --primary-color: #003366; /* Dark blue for a professional look */
-    --background-color: #f4f4f4; /* Light gray for a clean, neutral background */
-    --text-color: #333333; /* Dark gray for easy readability */
-    --header-bg-color: #004080; /* Slightly lighter dark blue for the header */
-    --header-text-color: #ffffff; /* White text for strong contrast */
-    --button-bg-color: #007bff; /* Bright blue for buttons, conveys trust and clarity */
-    --button-bg-hover: #0056b3; /* Darker blue for button hover for a sleek effect */
-    --button-text-color: #ffffff; /* White text for buttons to ensure readability */
-    --link-color: #1014f1; /* Matches the primary color for consistency */
-    --link-hover-color: #120872; /* Even darker blue for link hover */
-    
+    --primary-color: #009688;
+    --background-color: #FFFFFF;
+    --text-color: #37474F;
+    --header-bg-color: #00796B;
+    --header-text-color: #FFFFFF;
+    --button-bg-color: #004D40;
+    --button-bg-hover: #003D33;
+    --button-text-color: #FFFFFF;
+    --link-color: #009688;
+    --link-hover-color: #00796B;
+    --secondary-color: #B2DFDB;
 }
 
 /* Basic styling */
@@ -29,33 +29,12 @@ body {
     margin: 20px;
 }
 
-
-button {
-    margin-top: 10px;
-    height: 50px;
-    background-color: var(--button-bg-color);
-    color: var(--button-text-color);
-    border: none;
-    padding: 0 50px;
-    border-radius: 20px;
-    font-size: 16px;
-    font-weight: bolder;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-button:hover{
-    background-color: var(--button-bg-hover);
-    transform: scale(1.05); /* Slightly enlarge button on hover */
-}
-
 /* Links */
 a {
     font-weight: bolder;
     color: var(--link-color);
     text-decoration: none;
+    cursor: pointer;
 }
 
 a:hover {
@@ -84,6 +63,26 @@ h1{
     color: var(--header-text-color);
 }
 
+.pageBtn {
+    margin-top: 10px;
+    height: 50px;
+    background-color: var(--button-bg-color);
+    color: var(--button-text-color);
+    border: none;
+    padding: 0 50px;
+    border-radius: 20px;
+    font-size: 16px;
+    font-weight: bolder;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+button:hover{
+    background-color: var(--button-bg-hover);
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+}
 
 
 .pages {
@@ -96,9 +95,32 @@ h1{
 }
 
 .toolbar {
-    background-color: var(--background-color);
+    background-color: var(--secondary-color);
+    color: var(--text-color);
     margin: 0;
-    padding: 10px;
+    padding: 5px 10px;
+}
+
+.toolbar label {
+    padding: 0 20px;
+}
+
+.toolbar input[type="number"]{
+    width: 50px;
+}
+
+#pageSizeApply {
+    margin-right: 40px; 
+    height: 25px;
+    width: 200px;
+    font-size: 1em;
+    color: var(--button-text-color);
+    background-color: var(--button-bg-color);
+    border: none;
+    border-radius: 20px;
+    font-weight: bolder;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 /* BOOK CARD STYLES*/
@@ -160,6 +182,7 @@ table {
 }
 table, th, td {
     border: 1px solid;
+    padding-left: 20px;
   }
 
 tr {

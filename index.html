@@ -10,12 +10,12 @@
 
     <header>
         <div class="pages">
-            <button id="prev">&lt;Prev</button>
+            <button class="pageBtn" id="prev">&lt;Prev</button>
             <div>                    
                 <h1>My Books </h1>
                 <p id="index"></p>
             </div>
-           <button id="next">Next&gt;</button>
+           <button class="pageBtn" id="next">Next&gt;</button>
         </div>
 
         <div class="toolbar">
@@ -23,6 +23,12 @@
                 Table View
                 <input type="checkbox" id="isTableView" value="false"/>
             </label>
+            <label>
+                Page Size
+                <input type="number" id="pageSize" value="18"/>
+                <button id="pageSizeApply">Apply</button>
+            </label>
+
     
         </div>
 

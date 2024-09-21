@@ -1,11 +1,19 @@
 function main(){
 
     index = 1;
-    size = 18;
-    viewType = "card"
+    // Get default values from DOM
+    pageSizeEl = document.querySelector("#pageSize")
+    pageSizeEl.min = 1;
+    pageSizeEl.max = window.myData.length
+    console.log(window.myData.length)
+    size = pageSizeEl.valueAsNumber;
+    viewType = document.querySelector("#isTableView").checked === true ? "table" : "card";
     pagenation(index, size, viewType);
 
-    // TABLE VIEW LOGIC. toggle view type base on isTableView checkbox
+
+    // HEADER BAR EVENT LISTNERS
+
+    // 1. table view logic. toggle view type base on isTableView checkbox
     document.querySelector("#isTableView").addEventListener('click', (e) => {
         viewType = e.currentTarget.checked? "table": "card";
         console.log(viewType)
@@ -13,21 +21,38 @@ function main(){
 
     })
 
-
-    //setup pagenation buttons
+    // 2a. pagenation NEXT button
     document.querySelector("#next").addEventListener('click', function() {
 
-        if (index + size < window.myData.length){
+        if (index + size <= window.myData.length){
             index = index + size;
             pagenation(index, size, viewType);
         }
     })
 
+    // 2.b pagenation PREV button
     document.querySelector("#prev").addEventListener("click", function() {
 
         if (index - size > 0) {
             index = index - size;
             pagenation(index, size, viewType);
+        }
+    })
+
+
+    // 3. Apply Page size change
+    document.querySelector("#pageSizeApply").addEventListener("click", function(){
+        let newSize = document.querySelector("#pageSize").valueAsNumber;
+        pagenation(index, newSize, viewType);
+    })
+
+    document.querySelector("#pageSize").addEventListener("keydown", function(e){
+
+        console.log(e);
+
+        if(e.key === "Enter"){
+            let newSize = e.target.valueAsNumber;
+            pagenation(index, newSize, viewType);
         }
     })
 
