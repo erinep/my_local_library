@@ -194,6 +194,12 @@ function openInfo(book){
         document.querySelector("#info").remove();
     })
 
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape"){
+            document.querySelector("#info").remove();
+        }
+    })
+
     title = document.createElement("h1");
     title.innerText = book.title;
     title.id = "infoTitle"
