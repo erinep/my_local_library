@@ -30,6 +30,7 @@ function main(){
         }
     })
 
+
     // 2.b pagenation PREV button
     document.querySelector("#prev").addEventListener("click", function() {
 
@@ -38,6 +39,24 @@ function main(){
             pagenation(index, size, viewType);
         }
     })
+
+    // 2c. pagenation on ArrowLeft and ArrowRight
+    document.addEventListener('keydown', function(e) {
+
+        if (e.key === "ArrowRight"){
+            if (index + size <= window.myData.length){
+                index = index + size;
+                pagenation(index, size, viewType);
+            }
+        }
+        else if (e.key === "ArrowLeft"){
+            if (index - size > 0) {
+                index = index - size;
+                pagenation(index, size, viewType);
+            }
+        }
+    })
+
 
 
     // 3. Apply Page size change
