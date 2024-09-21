@@ -58,7 +58,12 @@ function buildTable(i, stop){
     let article = document.querySelector("article"); 
     article.innerHTML = "";
     var table = document.createElement("table")
-    table.innerHTML = "<tr><th>Title</th><th>Author</th><th>Description</th></tr>"
+    table.innerHTML = "<tr>       \
+            <th>Title</th>        \
+            <th>Author</th>       \
+            <th>Description</th>  \
+            <th>File</th>         \
+        </tr>"
 
     for (; i < stop ; ++i){
         if (i < window.myData.length){
@@ -73,8 +78,29 @@ function buildTable(i, stop){
 }
 
 function createRow(book){
+
     row = document.createElement("tr")
-    row.innerHTML = `<td>${book.title}</td><td>${book.author}</td><td>${book.summary}</td>`
+    row.innerHTML = `
+
+    <td>${book.title}</td>
+    <td>${book.author}</td>
+    <td class="about-cell">
+        <div  class="about-cell-div">
+            ${book.summary}
+        </div>
+    </td>
+    <td><a href="file:\\${book.path}">LINK</td>
+`
+
+    // Add show more link
+    var showMoreEl = document.createElement("a");
+    showMoreEl.innerText = "Read More..."
+    showMoreEl.addEventListener("click", () => {
+        openInfo(book);
+    })
+    row.querySelector(".about-cell").appendChild(showMoreEl);
+    
+
     return row;
 }
 
