@@ -5,21 +5,30 @@
 
 </head>
 <body>
+    <script src="./seed/mbooks_WITH_DATA.data"></script>
+    <script src="script.js"></script>
+
     <header>
         <div class="pages">
             <button id="prev">&lt;Prev</button>
-            <div>
-                <h1>My Books</h1>
+            <div>                    
+                <h1>My Books </h1>
                 <p id="index"></p>
-
             </div>
-            <button id="next">Next&gt;</button>
+           <button id="next">Next&gt;</button>
         </div>
+
+        <div class="toolbar">
+            <label>
+                Table View
+                <input type="checkbox" id="isTableView" value="false"/>
+            </label>
+    
+        </div>
+
     </header>
 
 
-    <script src="./seed/mbooks_WITH_DATA.data"></script>
-    <script src="script.js"></script>
 
     <article><!-- CONTENT WILL BE ADDED HERE --></article>
 

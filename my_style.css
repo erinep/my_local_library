@@ -73,8 +73,8 @@ header {
     background-color: var(--header-bg-color);
     z-index: 10;
     top: 0;
-    left: 0;    
-    padding: 20px;
+    left: 0;
+    padding: 0;
 }
 
 h1{
@@ -89,12 +89,17 @@ h1{
 .pages {
     width: 100%;
     /* border: 2px solid red; */
-    margin: 0 auto;
+    padding: 20px 20px 0 20px;
     display:flex;
     justify-content: space-between;
     color: var(--header-text-color);
 }
 
+.toolbar {
+    background-color: var(--background-color);
+    margin: 0;
+    padding: 10px;
+}
 
 /* BOOK CARD STYLES*/
 
@@ -146,6 +151,16 @@ article {
 .title {
     margin-bottom: 1rem;
 }
+
+
+/* TABLE VIEW STYLE */
+
+table {
+    width: 100%;
+}
+table, th, td {
+    border: 1px solid;
+  }
 
 
 /* INFO POPUP */

@@ -2,7 +2,16 @@ function main(){
 
     index = 1;
     size = 18;
-    pagenation(index, size);
+    viewType = "card"
+    pagenation(index, size, viewType);
+
+    // TABLE VIEW LOGIC. toggle view type base on isTableView checkbox
+    document.querySelector("#isTableView").addEventListener('click', (e) => {
+        viewType = e.currentTarget.checked? "table": "card";
+        console.log(viewType)
+        pagenation(index, size, viewType);
+
+    })
 
 
     //setup pagenation buttons
@@ -10,7 +19,7 @@ function main(){
 
         if (index + size < window.myData.length){
             index = index + size;
-            pagenation(index, size);
+            pagenation(index, size, viewType);
         }
     })
 
@@ -18,19 +27,60 @@ function main(){
 
         if (index - size > 0) {
             index = index - size;
-            pagenation(index, size);
+            pagenation(index, size, viewType);
         }
     })
 
 }
 
 
-function pagenation(i, size){
+function pagenation(i, size, viewType){
 
     i = i - 1;
     let stop = i + size;
     let pageCurrent = Math.ceil(i/ size) + 1
     let pageTotal = Math.ceil(window.myData.length / size)
+
+    if (viewType === "table"){
+        // alert("TABLE VIEW NOT IMPLEMENTED")
+        buildTable(i,stop);
+    } else {
+        buildCards(i,stop);
+    }
+
+    //load page number
+    pageCount = document.querySelector("#index").innerHTML = pageCurrent+ "/"+pageTotal;
+}
+
+
+function buildTable(i, stop){
+
+    let article = document.querySelector("article"); 
+    article.innerHTML = "";
+    var table = document.createElement("table")
+    table.innerHTML = "<tr><th>Title</th><th>Author</th><th>Description</th></tr>"
+
+    for (; i < stop ; ++i){
+        if (i < window.myData.length){
+            let book = window.myData[i];
+            row = createRow(book);
+            table.append(row)
+        }
+    }
+
+
+    article.appendChild(table);
+}
+
+function createRow(book){
+    row = document.createElement("tr")
+    row.innerHTML = `<td>${book.title}</td><td>${book.author}</td><td>${book.summary}</td>`
+    return row;
+}
+
+
+
+function buildCards(i, stop){
 
     // clear article contents
     document.querySelector("article").innerHTML = "";
@@ -41,9 +91,6 @@ function pagenation(i, size){
             appendBookCard(book);
         }
     }
-
-    //load page number
-    pageCount = document.querySelector("#index").innerHTML = pageCurrent+ "/"+pageTotal;
 }
 
 function appendBookCard(book){
@@ -64,6 +111,7 @@ function appendBookCard(book){
 
     var file_nameEl = document.createElement("p");
     file_nameEl.innerText = book.file_name;
+    file_nameEl.style.wordBreak = "break-word";
 
     var authorEl = document.createElement("p");
     authorEl.innerText = book.author;
